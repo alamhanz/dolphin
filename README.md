@@ -11,3 +11,4 @@ RL Playground
 * [Previous Repo](https://github.com/alamhanz/qlearn-journey)
 * [Tictactoe](https://github.com/MauroLuzzatto/OpenAI-Gym-TicTacToe-Environment)
 * [Packing](https://github.com/ylchan87/gym-BinPack3D)
+* [Job Shop Scheduling](https://github.com/prosysscience/JSSEnv)

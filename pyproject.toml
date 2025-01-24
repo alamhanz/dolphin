@@ -4,7 +4,6 @@ version = "0.1.0"
 description = "Default template for PDM package"
 authors = [
     {name = "Alamsyah Koto Hanza", email = "alamhanz@gmail.com"},
-    {name = "alamhanz", email = "alamhanz@gmail.com"},
 ]
 readme = "README.md"
 requires-python = ">=3.11"
@@ -18,6 +17,8 @@ dependencies = [
     "pygame>=2.6.0",
     "joblib==1.2.0",
     "cmake>=3.31.4",
+    "stable-baselines3[extra]",
+    "shimmy>=2.0"
 ]
 license = {text = "MIT"}
 

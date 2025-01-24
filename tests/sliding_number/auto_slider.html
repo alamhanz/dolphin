@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding Number Puzzle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+        }
+        .tile {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #3498db;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .empty {
+            background-color: #ecf0f1;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="puzzle"></div>
+
+<script>
+    // Initial state (0 represents the empty tile)
+    let initialState = [
+        [1, 2, 3],
+        [4, 0, 5],
+        [6, 7, 8]
+    ];
+
+    // Movement list (tile numbers to be moved in sequence)
+    let moveList = [5, 8, 7, 6, 4, 1, 2, 5];
+
+    function createPuzzle(state) {
+        const puzzleContainer = document.getElementById('puzzle');
+        puzzleContainer.innerHTML = '';
+        state.forEach((row, rowIndex) => {
+            row.forEach((value, colIndex) => {
+                const tile = document.createElement('div');
+                tile.classList.add('tile');
+                if (value === 0) {
+                    tile.classList.add('empty');
+                } else {
+                    tile.textContent = value;
+                }
+                puzzleContainer.appendChild(tile);
+            });
+        });
+    }
+
+    function findTilePosition(value) {
+        for (let r = 0; r < initialState.length; r++) {
+            for (let c = 0; c < initialState[r].length; c++) {
+                if (initialState[r][c] === value) {
+                    return { row: r, col: c };
+                }
+            }
+        }
+    }
+
+    function findEmptyPosition() {
+        return findTilePosition(0);
+    }
+
+    function moveTile(value) {
+        let { row: emptyRow, col: emptyCol } = findEmptyPosition();
+        let { row: tileRow, col: tileCol } = findTilePosition(value);
+
+        const rowDiff = Math.abs(tileRow - emptyRow);
+        const colDiff = Math.abs(tileCol - emptyCol);
+
+        if ((rowDiff === 1 && colDiff === 0) || (rowDiff === 0 && colDiff === 1)) {
+            initialState[emptyRow][emptyCol] = value;
+            initialState[tileRow][tileCol] = 0;
+            createPuzzle(initialState);
+        }
+    }
+
+    function executeMoves(moves) {
+        let index = 0;
+
+        function nextMove() {
+            if (index < moves.length) {
+                moveTile(moves[index]);
+                index++;
+                setTimeout(nextMove, 500); // 0.5 second delay
+            }
+        }
+
+        nextMove();
+    }
+
+    createPuzzle(initialState);
+
+    // Start the movement sequence after 1 second
+    setTimeout(() => {
+        executeMoves(moveList);
+    }, 1000);
+</script>
+
+</body>
+</html>

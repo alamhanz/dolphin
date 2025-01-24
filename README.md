@@ -12,3 +12,4 @@ RL Playground
 * [Tictactoe](https://github.com/MauroLuzzatto/OpenAI-Gym-TicTacToe-Environment)
 * [Packing](https://github.com/ylchan87/gym-BinPack3D)
 * [Job Shop Scheduling](https://github.com/prosysscience/JSSEnv)
+* https://github.com/thu-ml/tianshou/#comprehensive-functionality

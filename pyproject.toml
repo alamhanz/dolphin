@@ -1,0 +1,81 @@
+[project]
+name = "dolphin"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Alamsyah Koto Hanza", email = "alamhanz@gmail.com"},
+    {name = "alamhanz", email = "alamhanz@gmail.com"},
+]
+readme = "README.md"
+requires-python = ">=3.11"
+
+# Core dependencies
+dependencies = [
+    "pandas>=2.2.3",
+    "numpy>=1.25.0",
+    "sliding-puzzles>=0.9.1",
+    "gym[atari]",
+    "pygame>=2.6.0",
+    "joblib==1.2.0",
+    "cmake>=3.31.4",
+]
+license = {text = "MIT"}
+
+[project.optional-dependencies]
+# Development tools
+dev = [
+    "pytest>=7.4.2",
+    "pytest-cov>=4.1.0",
+    "requests-mock>=1.11.0",
+    "sqlfluff>=3.3.0",
+    "sqlfluff-templater-dbt>=3.3.0",
+    "stable-baselines3"
+]
+
+# Linting and formatting
+lint = [
+    "black>=23.10.0",
+    "flake8>=6.1.0",
+    "pylint>=3.0.1",
+]
+
+# Documentation
+docs = [
+    "sphinx>=7.2.6",
+]
+
+[tool.pdm]
+distribution = true
+[tool.pdm.scripts]
+# Original script
+sea.cmd = "python test/yes.py"
+
+# New linting and formatting scripts
+lint = "flake8 main/"
+black-check = "black --check main/"
+black-format = "black main/"
+pylint = "pylint main/"
+
+# Composite script to run all checks
+check = {composite = ["lint", "black-check", "pylint"]}
+format = "black main/"
+
+# Test
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
+
+# Linting and Formatting Tools
+[tool.pylint.MASTER]
+ignore-paths = ["^.venv/.*$", "^.tox/.*$", "^docs/*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[tool.isort]
+profile = "black"
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"

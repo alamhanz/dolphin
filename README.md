@@ -9,3 +9,5 @@ RL Playground
 * [TextWorld](https://github.com/microsoft/TextWorld?tab=readme-ov-file)
 * [Petting Zoo](https://github.com/Farama-Foundation/PettingZoo)
 * [Previous Repo](https://github.com/alamhanz/qlearn-journey)
+* [Tictactoe](https://github.com/MauroLuzzatto/OpenAI-Gym-TicTacToe-Environment)
+* [Packing](https://github.com/ylchan87/gym-BinPack3D)

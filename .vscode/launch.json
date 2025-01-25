@@ -1,11 +1,8 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python Debugger: Current File",
+            "name": "Python Debugger: macOS",
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
@@ -13,8 +10,20 @@
             "python": "/Users/alamhanz/miniconda3/envs/dolp/bin/python",
             "env": {
                 "CONDA_DEFAULT_ENV": "hanzo",
-                "PATH": "/Users/alamhanz/miniconda3/envs/dolp/bin:${env:PATH}",
-            },
+                "PATH": "/Users/alamhanz/miniconda3/envs/dolp/bin:${env:PATH}"
+            }
+        },
+        {
+            "name": "Python Debugger: Windows",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "python": "C:\\Users\\amoza\\miniconda3\\envs\\dolp\\python.exe",
+            "env": {
+                "CONDA_DEFAULT_ENV": "hanzo",
+                "PATH": "C:\\Users\\amoza\\miniconda3\\envs\\dolp;${env:PATH}"
+            }
         }
     ]
 }

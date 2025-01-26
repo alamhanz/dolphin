@@ -1,9 +1,10 @@
 [project]
 name = "dolphin"
 version = "0.1.0"
-description = ""
+description = "Reinforcement Learning Sandbox"
 authors = [
     {name = "Alamsyah Koto Hanza", email = "alamhanz@gmail.com"},
+    {name = "alamhanz", email = "alamhanz@gmail.com"},
 ]
 readme = "README.md"
 requires-python = ">=3.9"
@@ -11,14 +12,14 @@ requires-python = ">=3.9"
 # Core dependencies
 dependencies = [
     "pandas>=2.2.3",
-    "numpy==1.26.4",
+    "numpy>=1.26.4",
     "sliding-puzzles>=0.9.1",
-    "gym[atari]",
+    "gymnasium",
     "pygame>=2.6.0",
     "joblib==1.2.0",
     "cmake>=3.31.4",
     "stable-baselines3[extra]>=2.4.0",
-    "shimmy>=2.0"
+    "shimmy>=2.0",
 ]
 license = {text = "MIT"}
 
@@ -78,5 +79,5 @@ target-version = ['py39']
 [tool.isort]
 profile = "black"
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"

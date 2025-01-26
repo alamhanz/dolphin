@@ -72,6 +72,7 @@ def main():
     obs, info = env_test.reset()  # Gym API returns (observation, info)
     done = False
     total_reward = 0
+    step = 0
 
     while not done and total_reward >= -7500:
         action, _states = model_check.predict(obs)
@@ -82,8 +83,10 @@ def main():
         print(reward)
         env_test.render()
         time.sleep(1)
+        step += 1
 
     print(f"Total reward: {total_reward}")
+    print(f"Total steps: {step}")
     time.sleep(3)
 
 

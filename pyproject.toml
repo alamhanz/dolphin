@@ -16,7 +16,7 @@ dependencies = [
     "sliding-puzzles>=0.9.1",
     "gymnasium",
     "pygame>=2.6.0",
-    "joblib==1.2.0",
+    "joblib==1.4.2",
     "cmake>=3.31.4",
     "stable-baselines3[extra]>=2.4.0",
     "shimmy>=2.0",

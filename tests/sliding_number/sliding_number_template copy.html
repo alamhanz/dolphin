@@ -54,6 +54,7 @@
     <div class="game-container" id="gameBoard"></div>
     <script>
         let moveCount = 0;
+        const slider_solution = [1, 4, 5, 2, 8];
 
         function initializeGame(inputArray) {
             const tiles = inputArray.flat();
@@ -106,13 +107,22 @@
                 }
             }
 
+            function autoSolve() {
+                slider_solution.forEach((move, index) => {
+                    setTimeout(() => {
+                        moveTile(tiles.indexOf(move));
+                    }, 500 * index);
+                });
+            }
+
             createBoard();
+            autoSolve();
         }
 
         // Example input
         const inputArray = [
-            [1, 2, 3],
-            [4, 6, -1],
+            [-1, 2, 3],
+            [1, 4, 6],
             [7, 5, 8]
         ];
 

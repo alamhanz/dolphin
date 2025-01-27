@@ -8,8 +8,8 @@ from stable_baselines3 import DQN
 
 script_path = os.path.abspath(__file__)
 script_dir = os.path.dirname(script_path)
-PATH_MODEL = os.path.join(script_dir, "..", "..", "models")
-PATH_TEMPLATE = os.path.join(script_dir, "..", "..", "templates")
+PATH_MODEL = os.path.join(script_dir, "models")
+PATH_TEMPLATE = os.path.join(script_dir, "templates")
 
 
 class SliderNumber:

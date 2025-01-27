@@ -86,4 +86,4 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.packages.find]
 where = ["src"]
 [tool.setuptools.package-data]
-"dolphin" = ["models/*.zip", "templates/*.html"]
+"dolphin" = ["models/sliding_number/*.zip", "templates/sliding_number/*.html"]

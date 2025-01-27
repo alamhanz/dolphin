@@ -2,13 +2,14 @@ import os
 import time
 
 import gymnasium as gym
-import numpy as np
 import sliding_puzzles
+from jinja2 import Template
 from stable_baselines3 import DQN
 
 script_path = os.path.abspath(__file__)
 script_dir = os.path.dirname(script_path)
 PATH_MODEL = os.path.join(script_dir, "..", "..", "models")
+PATH_TEMPLATE = os.path.join(script_dir, "..", "..", "templates")
 
 
 class SliderNumber:
@@ -29,13 +30,14 @@ class SliderNumber:
         self.loaded_model = DQN.load(
             os.path.join(PATH_MODEL, model_name), env=self.auto_env
         )
-        obs, self.initial_auto_info = (
+        self.initial_state_onehot, self.initial_auto_info = (
             self.auto_env.reset()
         )  # Gym API returns (observation, info)
         done = False
         self.total_reward = 0
         self.steps = []
         self.initial_state = self.auto_env.unwrapped.state.copy()
+        obs = self.initial_state_onehot.copy()
         while not done and self.total_reward >= -500:
             action, _states = self.loaded_model.predict(obs)
             obs, reward, done, _, _ = self.auto_env.step(int(action))
@@ -45,27 +47,18 @@ class SliderNumber:
                 time.sleep(1)
             self.steps.append(int(action))
 
-    def set_slider(self, state):
-        if (
-            not isinstance(state, np.ndarray)
-            or state.dtype != np.int64
-            or state.shape != (3, 3)
-        ):
-            raise ValueError("State must be a numpy array of int64 with shape (3, 3)")
-        # self.manual_env.reset()
-        # self.manual_env.unwrapped.state = state
-        # self.x = self.manual_env.unwrapped.state
+    ## sliding_puzzles is not allowing to set the state directly
+    def get_html_template(self):
+        auto_slider_path = os.path.join(
+            PATH_TEMPLATE, "sliding_number", "auto_slider.html"
+        )
+        with open(auto_slider_path, "r") as file:
+            auto_slider_template = Template(file.read())
+        self.auto_slider = auto_slider_template
 
-        self.y, _ = self.manual_env.reset(
-            options={"state": state}
-        )  # Example state values
-        self.x = self.manual_env.unwrapped.state.copy()
-
-    def transform_to_grid(self, state):
-        # Extract indices where the value is 1
-        indices = np.where(state == 1)[0]
-
-        # Reshape or permute indices into the desired output shape
-        output = np.array(indices).reshape(3, 3)
-
-        return output
+        human_slider_path = os.path.join(
+            PATH_TEMPLATE, "sliding_number", "human_slider.html"
+        )
+        with open(human_slider_path, "r") as file:
+            human_slider_template = Template(file.read())
+        self.human_slider = human_slider_template

@@ -15,11 +15,8 @@ dependencies = [
     "numpy>=1.26.4",
     "sliding-puzzles>=0.9.1",
     "gymnasium",
-    "pygame>=2.6.0",
     "joblib==1.4.2",
-    "cmake>=3.31.4",
-    "stable-baselines3[extra]>=2.4.0",
-    "shimmy>=2.0",
+    "stable-baselines3>=2.4.0",
     "jinja2>=3.0.2",
 ]
 license = {text = "MIT"}
@@ -87,3 +84,17 @@ build-backend = "setuptools.build_meta"
 where = ["src"]
 [tool.setuptools.package-data]
 "dolphin" = ["models/sliding_number/*.zip", "templates/sliding_number/*.html"]
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pandas>=2.2.3",
+    "numpy>=1.26.4",
+    "sliding-puzzles>=0.9.1",
+    "gymnasium",
+    "pygame>=2.6.0",
+    "joblib==1.4.2",
+    "cmake>=3.31.4",
+    "stable-baselines3[extra]>=2.4.0",
+    "shimmy>=2.0",
+    "jinja2>=3.0.2",
+]

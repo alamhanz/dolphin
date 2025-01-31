@@ -22,9 +22,9 @@ class SliderNumber:
         else:
             self.auto_env = gym.make("SlidingPuzzles-v0", w=3, variation="onehot")
 
-        self.manual_env = gym.make(
-            "SlidingPuzzles-v0", w=3, variation="onehot", render_mode="human"
-        )
+        # self.manual_env = gym.make(
+        #     "SlidingPuzzles-v0", w=3, variation="onehot", render_mode="human"
+        # )
 
     def auto_run(self, model_name="sliding_number/dqn_slide_latest"):
         self.loaded_model = DQN.load(

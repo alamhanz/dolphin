@@ -17,3 +17,4 @@ RL Playground
 
 <!-- gym 0.26.2 -->
 <!-- pip install --upgrade stable-baselines3 gym -->
+<!-- pdm 2.22.3 -->

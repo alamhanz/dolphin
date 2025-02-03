@@ -171,3 +171,5 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 dqn_logs/*
+pdm.lock
+.python-version

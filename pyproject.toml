@@ -1,6 +1,6 @@
 [project]
 name = "dolphin"
-version = "0.1.2"
+version = "0.1.3"
 description = "Reinforcement Learning Sandbox"
 authors = [
     {name = "Alamsyah Koto Hanza", email = "alamhanz@gmail.com"},
@@ -11,82 +11,17 @@ requires-python = ">=3.9"
 
 # Core dependencies
 dependencies = [
-    "pandas>=2.2.3",
     "numpy>=1.26.4",
-    "sliding-puzzles>=0.9.1",
-    "gymnasium",
     "joblib==1.4.2",
-    "stable-baselines3>=2.4.0",
     "jinja2>=3.0.2",
+    "gymnasium>=1.0.0",
+    "sliding-puzzles>=0.9.1",
+    "torch>=2.6.0"
 ]
 license = {text = "MIT"}
 
-[project.optional-dependencies]
-# Development tools
-dev = [
-    "pytest>=7.4.2",
-    "pytest-cov>=4.1.0",
-    "requests-mock>=1.11.0",
-    "sqlfluff>=3.3.0",
-    "sqlfluff-templater-dbt>=3.3.0",
-    "stable-baselines3"
-]
-
-# Linting and formatting
-lint = [
-    "black>=23.10.0",
-    "flake8>=6.1.0",
-    "pylint>=3.0.1",
-]
-
-# Documentation
-docs = [
-    "sphinx>=7.2.6",
-]
-
-[tool.pdm]
-distribution = true
-[tool.pdm.scripts]
-# Original script
-sea.cmd = "python test/yes.py"
-
-# New linting and formatting scripts
-lint = "flake8 main/"
-black-check = "black --check main/"
-black-format = "black main/"
-pylint = "pylint main/"
-
-# Composite script to run all checks
-check = {composite = ["lint", "black-check", "pylint"]}
-format = "black main/"
-
-# Test
-[tool.pytest.ini_options]
-minversion = "6.0"
-addopts = "-ra -q"
-testpaths = ["tests"]
-
-# Linting and Formatting Tools
-[tool.pylint.MASTER]
-ignore-paths = ["^.venv/.*$", "^.tox/.*$", "^docs/*"]
-
-[tool.black]
-line-length = 88
-target-version = ['py39']
-
-[tool.isort]
-profile = "black"
-[build-system]
-requires = ["setuptools>=61"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools.packages.find]
-where = ["src"]
-[tool.setuptools.package-data]
-"dolphin" = ["models/sliding_number/*.zip", "templates/sliding_number/*.html"]
-
-[tool.pdm.dev-dependencies]
-dev = [
+[dependency-groups]
+dev1 = [
     "pandas>=2.2.3",
     "numpy>=1.26.4",
     "sliding-puzzles>=0.9.1",
@@ -98,3 +33,25 @@ dev = [
     "shimmy>=2.0",
     "jinja2>=3.0.2",
 ]
+
+[tool.pdm]
+distribution = true
+[tool.pdm.scripts]
+# Original script
+sea.cmd = "python test/yes.py"
+
+# Test
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
+
+# Linting and Formatting Tools
+[tool.pylint.MASTER]
+ignore-paths = ["^.venv/.*$", "^.tox/.*$", "^docs/*"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"dolphin" = ["models/sliding_number/*.zip", "templates/sliding_number/*.html"]

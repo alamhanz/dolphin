@@ -1,6 +1,6 @@
 [project]
 name = "dolphin"
-version = "0.1.1"
+version = "0.1.2"
 description = "Reinforcement Learning Sandbox"
 authors = [
     {name = "Alamsyah Koto Hanza", email = "alamhanz@gmail.com"},

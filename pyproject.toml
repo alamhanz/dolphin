@@ -54,4 +54,4 @@ ignore-paths = ["^.venv/.*$", "^.tox/.*$", "^docs/*"]
 where = ["src"]
 
 [tool.setuptools.package-data]
-"dolphin" = ["models/sliding_number/*.zip", "templates/sliding_number/*.html"]
+"dolphin" = ["models/sliding_number/*.zip", "models/sliding_number/*.pth", "templates/sliding_number/*.html"]

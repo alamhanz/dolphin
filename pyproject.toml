@@ -12,16 +12,15 @@ requires-python = ">=3.9"
 # Core dependencies
 dependencies = [
     "numpy>=1.26.4",
-    "joblib==1.4.2",
-    "jinja2>=3.0.2",
-    "gymnasium>=1.0.0",
     "sliding-puzzles>=0.9.1",
-    "torch>=2.6.0"
+    "gymnasium",
+    "torch==2.3.1"  # Default to CPU
 ]
-license = {text = "MIT"}
 
+# Development dependencies (GPU version)
 [dependency-groups]
 dev1 = [
+    "torch>=2.3.0",  # Use GPU version for development
     "pandas>=2.2.3",
     "numpy>=1.26.4",
     "sliding-puzzles>=0.9.1",
@@ -34,8 +33,20 @@ dev1 = [
     "jinja2>=3.0.2",
 ]
 
+# Fallback to GPU if CPU version not found
+[[tool.pdm.source]]
+type = "find_links"
+url = "https://download.pytorch.org/whl/cpu/torch_stable.html"
+name = "torch"
+
+[[tool.pdm.source]]
+type = "find_links"
+url = "https://download.pytorch.org/whl/cu117/torch_stable.html"
+name = "torch-gpu"
+
 [tool.pdm]
 distribution = true
+
 [tool.pdm.scripts]
 # Original script
 sea.cmd = "python test/yes.py"
